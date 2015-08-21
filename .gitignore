@@ -1,10 +1,12 @@
 package example.com.siteyeyonlendirme;
 
 import android.content.Intent;
+import android.content.res.Resources;
 import android.graphics.Color;
 import android.net.Uri;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -20,10 +22,22 @@ public class MainActivity extends AppCompatActivity {
     private int sayac1  = 0;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        final TextView t, sayac;
 
+// Bir dizi ile sayıları toplama
+        Resources res = this.getResources();
+        int arr[] = res.getIntArray(R.array.rakamlar);
+        int sonuc = 0;
+        for (int i=0; i <= arr.length-1; ++i)
+        {
+            sonuc += arr[i];
+
+        }
+        this.setTitle("Sonuc: " + sonuc);
+//// Bir dizi ile sayıları toplama bitiş
+        final TextView t, sayac;
         Button arti, eksi;
         arti = (Button) findViewById(R.id.angry_btn);
         eksi = (Button) findViewById(R.id.angry_btn2);
@@ -71,6 +85,26 @@ public class MainActivity extends AppCompatActivity {
         });
 
 
+
+    }
+    @Override
+    public boolean onKeyDown(int keyCode, KeyEvent event)
+    {
+        switch (keyCode)
+        {
+            case KeyEvent.KEYCODE_BACK:
+                this.setTitle("Geri ok");
+                break;
+            case KeyEvent.KEYCODE_VOLUME_UP:
+                this.setTitle("Ses ac");
+                break;
+            case KeyEvent.KEYCODE_VOLUME_DOWN:
+                this.setTitle("Ses kapat");
+                break;
+        }
+
+
+        return super.onKeyDown(keyCode, event);
     }
 
     @Override
@@ -94,4 +128,6 @@ public class MainActivity extends AppCompatActivity {
 
         return super.onOptionsItemSelected(item);
     }
+
+
 }
