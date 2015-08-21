@@ -1,4 +1,4 @@
-  package example.com.siteyeyonlendirme;
+package example.com.siteyeyonlendirme;
 
 import android.content.Intent;
 import android.graphics.Color;
@@ -46,6 +46,10 @@ public class MainActivity extends AppCompatActivity {
                 sayac.setText(String.format("Kac kere Tikandi : %d", sayac1));
 
 
+                // Her tıklayınca Bir nesnenin Arka Plan rengini değiştirmek.
+                Random rnd= new Random();
+                sayac.setBackgroundColor(Color.rgb(rnd.nextInt(255),rnd.nextInt(255),rnd.nextInt(255)));
+
             }
         });
 
@@ -56,7 +60,11 @@ public class MainActivity extends AppCompatActivity {
                 sayac.setText(String.format("Kac kere Tikandi : %d", sayac1));
 
 
-              
+                // Uygulamanın adını o anki tarih ve saati yazma
+
+                Calendar cld = Calendar.getInstance();
+                String str= cld.getTime().toString();
+                MainActivity.this.setTitle(str);
 
 
             }
